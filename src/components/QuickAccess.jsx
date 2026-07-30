@@ -25,11 +25,11 @@ export default function QuickAccess({ products, onSelect }) {
 
       <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-2.5 md:gap-3">
         {featured.map((product) => (
-          <button
-            key={product.id}
-            onClick={() => onSelect(product.id)}
-            className="text-left rounded-[16px] border border-[#EFEFEF] bg-white p-4 hover:border-teal/30 hover:shadow-[0_8px_20px_rgba(0,0,0,0.04)] transition group"
-          >
+            <button
+              key={product.id}
+              onClick={() => onSelect(product.id)}
+              className="text-left rounded-[16px] border border-[#EFEFEF] bg-white p-4 hover:border-teal/30 hover:shadow-[0_8px_20px_rgba(0,0,0,0.04)] transition group"
+            >
             <div className="flex items-center gap-2">
               <img
                 src={product.image}

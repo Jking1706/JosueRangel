@@ -33,6 +33,27 @@ export default function Hero({ products, activeCategory, onCategoryChange }) {
           recuperación y equilibrio celular con biodisponibilidad 100%.
         </p>
 
+        <div className="mt-6 grid grid-cols-3 gap-2 md:gap-3 w-full max-w-[560px]">
+          <div className="rounded-[18px] border border-[#EFEFEF] bg-white p-3 md:p-4">
+            <div className="font-serif-display text-[22px] md:text-[26px] leading-none">12</div>
+            <div className="mt-1 font-sans-ui text-[10px] md:text-[11px] tracking-[0.14em] text-ink/45 uppercase">
+              Sueros
+            </div>
+          </div>
+          <div className="rounded-[18px] border border-[#EFEFEF] bg-white p-3 md:p-4">
+            <div className="font-serif-display text-[22px] md:text-[26px] leading-none">2</div>
+            <div className="mt-1 font-sans-ui text-[10px] md:text-[11px] tracking-[0.14em] text-ink/45 uppercase">
+              Categorías
+            </div>
+          </div>
+          <div className="rounded-[18px] border border-[#EFEFEF] bg-white p-3 md:p-4">
+            <div className="font-serif-display text-[22px] md:text-[26px] leading-none">IV</div>
+            <div className="mt-1 font-sans-ui text-[10px] md:text-[11px] tracking-[0.14em] text-ink/45 uppercase">
+              Presentación
+            </div>
+          </div>
+        </div>
+
         <div className="mt-6 md:mt-8 flex items-center gap-1.5 p-1 rounded-full bg-[#F7F7F7] border border-[#F0F0F0] max-w-full overflow-x-auto no-scrollbar">
           {CATEGORIES.map((category) => {
             const count =

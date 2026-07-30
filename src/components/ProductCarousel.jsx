@@ -2,7 +2,7 @@ import { useRef, useState, useCallback } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "./Icons.jsx";
 import ProductCard from "./ProductCard.jsx";
 
-export default function ProductCarousel({ products, activeCategory }) {
+export default function ProductCarousel({ products, activeCategory, onOpenProduct }) {
   const trackRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -77,6 +77,7 @@ export default function ProductCarousel({ products, activeCategory }) {
                 index={i}
                 total={products.length}
                 isActive={i === activeIndex}
+                onOpen={onOpenProduct}
               />
             </div>
           ))}

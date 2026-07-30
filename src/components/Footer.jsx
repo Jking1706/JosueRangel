@@ -1,4 +1,9 @@
 import { assetPath } from "../utils/assetPath.js";
+import { buildWhatsAppLink } from "../utils/whatsapp.js";
+
+const whatsappLink = buildWhatsAppLink(
+  "Hola, quiero consultar más información sobre los sueros."
+);
 
 export default function Footer() {
   return (
@@ -29,10 +34,14 @@ export default function Footer() {
             <div className="font-sans-ui text-[11px] tracking-[0.16em] text-ink/40">
               CONTACTO PROFESIONAL
             </div>
-            {/* TODO: reemplazar por el link real de WhatsApp, p. ej. https://wa.me/57XXXXXXXXXX */}
-            <div className="mt-2 font-sans-ui text-[15px]">
-              WhatsApp: a compartir por link privado
-            </div>
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 inline-flex font-sans-ui text-[15px] text-teal-dark hover:underline"
+            >
+              WhatsApp: +57 323 4085506
+            </a>
             <div className="font-sans-ui text-[14px] md:text-[13px] text-ink/60">
               Este catálogo es informativo y no sustituye valoración médica.
             </div>

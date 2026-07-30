@@ -1,6 +1,17 @@
+import { buildWhatsAppLink } from "../utils/whatsapp.js";
 import { DropletsIcon } from "./Icons.jsx";
 
-export default function ProductCard({ product, index, total, isActive }) {
+export default function ProductCard({
+  product,
+  index,
+  total,
+  isActive,
+  onOpen = () => {},
+}) {
+  const whatsappLink = buildWhatsAppLink(
+    `Hola, quiero consultar más información sobre el ${product.commercialName}.`
+  );
+
   return (
     <div className="relative h-full rounded-[28px] bg-white border border-[#F1F1F1] shadow-[0_20px_60px_rgba(0,0,0,0.06),0_1px_0_white_inset] overflow-hidden flex flex-col">
       {/* Imagen */}
@@ -79,6 +90,23 @@ export default function ProductCard({ product, index, total, isActive }) {
           <div className="font-sans-ui text-[11px] text-ink/40">
             USP • {index + 1}/{total}
           </div>
+        </div>
+
+        <div className="mt-4 flex flex-col sm:flex-row gap-2">
+          <button
+            onClick={() => onOpen(product.id)}
+            className="flex-1 inline-flex items-center justify-center px-4 py-2.5 rounded-full border border-[#E8E8E8] font-sans-ui text-[13px] text-ink/70 hover:text-ink hover:border-teal/30 transition"
+          >
+            Ver detalle
+          </button>
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noreferrer"
+            className="flex-1 inline-flex items-center justify-center px-4 py-2.5 rounded-full bg-teal text-white font-sans-ui text-[13px] hover:bg-teal-dark transition"
+          >
+            WhatsApp
+          </a>
         </div>
       </div>
     </div>
