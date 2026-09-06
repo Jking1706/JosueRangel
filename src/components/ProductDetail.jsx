@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { buildWhatsAppLink } from "../utils/whatsapp.js";
 import { assetPath } from "../utils/assetPath.js";
+import { formatPrice } from "../utils/formatPrice.js";
 
 export default function ProductDetail({ product, relatedProducts, onBack, onOpenProduct }) {
   const [copied, setCopied] = useState(false);
-  const whatsappLink = buildWhatsAppLink(
-    `Hola, quiero consultar más información sobre el ${product.commercialName}.`
-  );
+  const whatsappMessage = `Hola, quiero consultar más información sobre el ${product.commercialName}. Precio: ${formatPrice(
+    product.price
+  )}.`;
+  const whatsappLink = buildWhatsAppLink(whatsappMessage);
 
   const copyLink = async () => {
     try {
@@ -52,7 +54,7 @@ export default function ProductDetail({ product, relatedProducts, onBack, onOpen
             {product.commercialName}
           </h1>
 
-          <div className="mt-5 grid grid-cols-2 gap-2.5">
+          <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
             <div className="rounded-[16px] bg-[#FAFFFE] border border-[#EDF6F5] p-3">
               <div className="font-sans-ui text-[10px] tracking-[0.14em] text-ink/40 uppercase">
                 Categoría
@@ -67,6 +69,14 @@ export default function ProductDetail({ product, relatedProducts, onBack, onOpen
               </div>
               <div className="mt-1 font-serif-display text-[15px] font-bold">
                 {product.benefits.length} puntos clave
+              </div>
+            </div>
+            <div className="rounded-[16px] bg-[#FAFFFE] border border-[#EDF6F5] p-3">
+              <div className="font-sans-ui text-[10px] tracking-[0.14em] text-ink/40 uppercase">
+                Precio
+              </div>
+              <div className="mt-1 font-serif-display text-[15px] font-bold text-teal-dark">
+                {formatPrice(product.price)}
               </div>
             </div>
           </div>
@@ -154,6 +164,9 @@ export default function ProductDetail({ product, relatedProducts, onBack, onOpen
                 </div>
                 <div className="mt-2 font-sans-ui text-[12px] text-ink/55 leading-[1.4] line-clamp-2">
                   {item.description}
+                </div>
+                <div className="mt-2 font-serif-display text-[13px] font-bold text-teal-dark">
+                  {formatPrice(item.price)}
                 </div>
               </button>
             ))}

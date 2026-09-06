@@ -1,4 +1,5 @@
 import { buildWhatsAppLink } from "../utils/whatsapp.js";
+import { formatPrice } from "../utils/formatPrice.js";
 import { DropletsIcon } from "./Icons.jsx";
 
 export default function ProductCard({
@@ -8,9 +9,10 @@ export default function ProductCard({
   isActive,
   onOpen = () => {},
 }) {
-  const whatsappLink = buildWhatsAppLink(
-    `Hola, quiero consultar más información sobre el ${product.commercialName}.`
-  );
+  const whatsappMessage = `Hola, quiero consultar más información sobre el ${product.commercialName}. Precio: ${formatPrice(
+    product.price
+  )}.`;
+  const whatsappLink = buildWhatsAppLink(whatsappMessage);
 
   return (
     <div className="relative h-full rounded-[28px] bg-white border border-[#F1F1F1] shadow-[0_20px_60px_rgba(0,0,0,0.06),0_1px_0_white_inset] overflow-hidden flex flex-col">
@@ -54,6 +56,15 @@ export default function ProductCard({
 
         <div className="mt-3 font-sans-ui text-[11px] md:text-[12px] leading-[1.5] tracking-[0.06em] text-ink/55 uppercase">
           {product.technicalName}
+        </div>
+
+        <div className="mt-4 inline-flex items-baseline gap-2 rounded-full border border-[#E6F7F7] bg-[#F7FFFE] px-3.5 py-2">
+          <span className="font-sans-ui text-[10px] tracking-[0.14em] text-ink/40 uppercase">
+            Precio
+          </span>
+          <span className="font-serif-display text-[18px] font-bold text-ink">
+            {formatPrice(product.price)}
+          </span>
         </div>
 
         <p className="mt-4 font-sans-ui text-[16px] md:text-[15px] leading-[1.55] text-ink/65">
