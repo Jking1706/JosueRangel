@@ -1,6 +1,6 @@
 import { DropletsIcon } from "./Icons.jsx";
 
-export default function Header() {
+export default function Header({ actionLabel, actionHref }) {
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-[18px] border-b border-[#F0F0F0]">
       <div className="mx-auto max-w-[1200px] px-4 md:px-10 h-[64px] md:h-[88px] flex items-center justify-between gap-3">
@@ -17,9 +17,18 @@ export default function Header() {
             </div>
           </div>
         </div>
-        <div className="font-sans-ui text-[11px] px-3 md:px-4 py-2 rounded-full border border-[#E8E8E8] text-ink/70">
-          Catálogo 2026
-        </div>
+        {actionHref ? (
+          <a
+            href={actionHref}
+            className="font-sans-ui text-[11px] px-3 md:px-4 py-2 rounded-full border border-[#E8E8E8] text-ink/70 hover:text-ink hover:border-teal/30 transition"
+          >
+            {actionLabel || "Catálogo 2026"}
+          </a>
+        ) : (
+          <div className="font-sans-ui text-[11px] px-3 md:px-4 py-2 rounded-full border border-[#E8E8E8] text-ink/70">
+            {actionLabel || "Catálogo 2026"}
+          </div>
+        )}
       </div>
     </header>
   );

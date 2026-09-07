@@ -1,13 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import products from "./data/products.js";
+import CatalogPage from "./components/CatalogPage.jsx";
+import LandingPage from "./components/LandingPage.jsx";
 import Header from "./components/Header.jsx";
-import Hero from "./components/Hero.jsx";
-import SwipeHint from "./components/SwipeHint.jsx";
-import ProductCarousel from "./components/ProductCarousel.jsx";
-import QuickAccess from "./components/QuickAccess.jsx";
 import Footer from "./components/Footer.jsx";
 import ProductDetail from "./components/ProductDetail.jsx";
-import { getHomeHash, getProductHash, parseRouteHash } from "./utils/routes.js";
+import { getCatalogHash, getHomeHash, getProductHash, parseRouteHash } from "./utils/routes.js";
 
 export default function App() {
   const [activeCategory, setActiveCategory] = useState("Todos");
@@ -33,8 +31,8 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const goHome = () => {
-    window.location.hash = getHomeHash();
+  const openCatalog = () => {
+    window.location.hash = getCatalogHash();
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -47,11 +45,11 @@ export default function App() {
   if (selectedProduct) {
     return (
       <div className="min-h-screen bg-white text-ink">
-        <Header />
+        <Header actionLabel="Inicio" actionHref={getHomeHash()} />
         <ProductDetail
           product={selectedProduct}
           relatedProducts={relatedProducts.slice(0, 3)}
-          onBack={goHome}
+          onBack={openCatalog}
           onOpenProduct={openProduct}
         />
         <Footer />
@@ -59,30 +57,19 @@ export default function App() {
     );
   }
 
-  return (
-    <div className="min-h-screen bg-white text-ink">
-      <Header />
-
-      <Hero
+  if (route.type === "catalog") {
+    return (
+      <CatalogPage
         products={products}
+        filteredProducts={filteredProducts}
         activeCategory={activeCategory}
         onCategoryChange={setActiveCategory}
-      />
-
-      <SwipeHint />
-
-      <ProductCarousel
-        products={filteredProducts}
-        activeCategory={activeCategory}
         onOpenProduct={openProduct}
       />
+    );
+  }
 
-      <QuickAccess
-        products={products}
-        onSelect={(id) => openProduct(id)}
-      />
-
-      <Footer />
-    </div>
+  return (
+    <LandingPage />
   );
 }
